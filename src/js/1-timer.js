@@ -47,9 +47,6 @@ const options = {
   },
 };
 
-flatpickr(input, options);
-
-
 startBtn.addEventListener("click", () => {
   startBtn.disabled = true;
   input.disabled = true;
@@ -125,31 +122,4 @@ flatpickr(input, {
     userSelectedDate = selectedDate;
     startBtn.disabled = false;
   },
-});
-
-startBtn.addEventListener("click", () => {
-  startBtn.disabled = true;
-  input.disabled = true;
-
-  timerId = setInterval(() => {
-    const now = new Date();
-    const diff = userSelectedDate - now;
-
-    if (diff <= 0) {
-      clearInterval(timerId);
-
-      updateTimer({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      });
-
-      input.disabled = false;
-      return;
-    }
-
-    const time = convertMs(diff);
-    updateTimer(time);
-  }, 1000);
 });
